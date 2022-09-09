@@ -14,18 +14,15 @@ db.on('error', (err) => console.log(err.message + ' is mongod not running?'));
 db.on('connected', () => console.log('mongo connected'));
 db.on('disconnected', () => console.log('mongo disconnected'));
 
-// // Database Connection Error / Success
-// const db = mongoose.connection;
-// db.on('error', (err) => console.log(err.message + ' is mongod not running?'));
-// db.on('connected', () => console.log('mongo connected'));
-// db.on('disconnected', () => console.log('mongo disconnected'));
-
 
 // MIDDLEWARE
 
 
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
+
+const articlesController = require('./controllers/articles.js');
+app.use('/articles', articlesController);
 
 
 
